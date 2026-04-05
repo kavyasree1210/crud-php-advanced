@@ -13,7 +13,7 @@ if(isset($_POST['submit'])) {
         $row = mysqli_fetch_assoc($result);
 
         // Verify password
-        if(password_verify($password, $row['password'])) {
+        if(password_verify($password, $row['password'])){
             $_SESSION['user'] = $username;
             header("Location: index.php");
             exit();
