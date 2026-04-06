@@ -103,22 +103,21 @@ $total_pages = ceil($total_posts / $limit);
 </thead>
 
 <tbody>
-<?php
-while($row = mysqli_fetch_assoc($result)) {
-    echo "<tr>
-        <td>{$row['id']}</td>
-        <td>{$row['title']}</td>
-        <td>{$row['content']}</td>
-        <td>
-            <a href='edit.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>
-            <a href='delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
-        </td>
-    </tr>";
-}
-?>
-</tbody>
-</table>
+<?php while($row = mysqli_fetch_assoc($result)) { ?>
+<tr>
+    <td><?php echo $row['id']; ?></td>
+    <td><?php echo $row['title']; ?></td>
+    <td><?php echo $row['content']; ?></td>
 
+    <td>
+        <?php if($_SESSION['role'] == 'admin') { ?>
+            <a href="edit.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
+            <a href="delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+        <?php } ?>
+    </td>
+</tr>
+<?php } ?>
+</table>
 <!-- Pagination -->
 <div class="text-center mt-3">
 
